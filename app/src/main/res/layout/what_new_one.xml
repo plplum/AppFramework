@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/guide_a"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="大宗贸易 全球互联"
+            android:textColor="#666665"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="大商道拥有大量国内和国外用户"
+            android:textColor="#666665"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/text_devicename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="通过平台全球互联进行贸易"
+            android:textColor="#666665"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/bg_banner_selected"/>
+
+            <ImageView
+                android:layout_marginStart="10dp"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/bg_banner_unselected"/>
+
+            <ImageView
+                android:layout_marginStart="10dp"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/bg_banner_unselected"/>
+            <ImageView
+                android:layout_marginStart="10dp"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/bg_banner_unselected"/>
+
+
+        </LinearLayout>
+        </LinearLayout>
+
+
+
+
+</RelativeLayout>

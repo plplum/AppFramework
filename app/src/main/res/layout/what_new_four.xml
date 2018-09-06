@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/guide_a"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="大道至简 从一而始"
+            android:textColor="#666665"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="电子交易、仓储物流"
+            android:textColor="#666665"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/text_devicename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="结算服务、供应链金融、信息数据"
+            android:textColor="#666665"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/bg_banner_unselected"/>
+
+            <ImageView
+                android:layout_marginStart="10dp"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/bg_banner_unselected"/>
+
+            <ImageView
+                android:layout_marginStart="10dp"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/bg_banner_unselected"/>
+            <ImageView
+                android:layout_marginStart="10dp"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/bg_banner_selected"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+    <Button
+        android:id="@+id/start_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="立即体验"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        android:padding="10dp"
+        android:background="@drawable/bg_btn_unselected_start"/>
+
+
+</RelativeLayout>

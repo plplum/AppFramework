@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AppFramework</string>
+    <string name="title_menu1">Menu1</string>
+    <string name="title_menu2">Menu2</string>
+    <string name="title_menu3">Menu3</string>
+    <string name="title_menu4">Menu4</string>
+
+    <string name="action_doing">正在执行...</string>
+
+</resources>

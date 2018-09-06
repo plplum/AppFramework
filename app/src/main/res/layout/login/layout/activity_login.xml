@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/id_toolbar"
+        app:titleTextColor="@android:color/white"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:src="@drawable/error"
+            android:background="@color/transparent"
+            android:contentDescription="@null"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginRight="16dp"
+            android:text="登录"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_register"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center|right"
+            android:gravity="center"
+            android:layout_marginRight="16dp"
+            android:text="注册"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_gravity="center"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="30dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="大商道溢价铜交易平台"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Premium copper trading platform"
+            android:textSize="13sp"
+            android:textStyle="normal" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:focusable="true"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox_login"
+                android:drawableRight="@drawable/arrow_login"
+                android:drawablePadding="10dp"
+                android:hint="请输入账号"
+                android:inputType="text"
+                android:minHeight="40dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:textCursorDrawable="@drawable/couser_shape"
+                android:imeOptions="actionNext"
+                android:nextFocusForward="@+id/et_password"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:focusable="true"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/inputbox_login"
+                android:drawableRight="@drawable/eye_login"
+                android:drawablePadding="10dp"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:textCursorDrawable="@drawable/couser_shape"
+                android:minHeight="40dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="登录"
+                android:background="@drawable/btn_login_bg"
+                android:textSize="18sp"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_forgetpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_weight="4"
+                />
+
+            <TextView
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="忘记密码?"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
+
+            <View
+                android:layout_weight="4"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
