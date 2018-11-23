@@ -75,6 +75,7 @@ public class MainActivity extends BaseActivity {
         TextView count = (TextView) badge.findViewById(R.id.tv_msg_count);
         count.setText(String.valueOf(10));
         //count.setVisibility(View.GONE);
+        verifyStoragePermissions(this);
     }
 
     @Override

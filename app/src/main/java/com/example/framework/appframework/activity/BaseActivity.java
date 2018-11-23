@@ -106,7 +106,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
 
     private static String[] PERMISSIONS_STORAGE = {
-            "android.[.READ_EXTERNAL_STORAGE",
+            "android.permission.READ_EXTERNAL_STORAGE",
             "android.permission.WRITE_EXTERNAL_STORAGE" };
 
     public static void verifyStoragePermissions(Activity activity) {

@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.multidex.MultiDex;
 import android.support.v4.app.NotificationCompat;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -17,17 +19,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.framework.appframework.db.DBHelper;
+import com.example.framework.appframework.db.MigrationHelper;
+import com.example.framework.appframework.db.MyOpenHelper;
+import com.example.framework.appframework.model.DaoMaster;
+import com.example.framework.appframework.model.DaoSession;
 import com.example.framework.appframework.model.LoginInfo;
 import com.example.framework.appframework.util.CrashHandler;
 import com.example.framework.appframework.util.LogUtil;
 import com.example.framework.appframework.util.Util;
+
+import org.greenrobot.greendao.DaoLog;
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import static com.example.framework.appframework.util.Util.USER_OBJ;
+import static org.greenrobot.greendao.DaoLog.VERBOSE;
 
 /**
  * 公司：
@@ -86,16 +95,19 @@ public class BaseApplication extends Application {
 
     private LoginInfo mLoginInfo;
 
-    private DBHelper mDBHelper;
+    //private DBHelper mDBHelper;
+
+    private static DaoSession daoSession;
+
 
     @Override
     public void onCreate() {
         super.onCreate();
-        //MultiDex.install(this);
+        MultiDex.install(this);
         mInstance = this;
         mContext = this.getApplicationContext();
         mPreferences = mContext.getSharedPreferences(mAppPreferences, Context.MODE_PRIVATE);
-        mDBHelper = new DBHelper(mContext);
+        //mDBHelper = new DBHelper(mContext);
         // 初始化网络请求
         /*AsyncHttpClient client = new AsyncHttpClient();
         HttpClient.setHttpClient(client);
@@ -107,8 +119,12 @@ public class BaseApplication extends Application {
         //ToolImageLoader.initImageLoader(mContext);
         //LocalImageHelper.init(this);
 
+        //GreenDaoManager.getInstance();
+
         LogUtil.i(TAG, "init application ： OnCreate()");
 
+
+        setupDatabase();
     }
 
     public static BaseApplication getApplication() {
@@ -118,6 +134,24 @@ public class BaseApplication extends Application {
     public static synchronized BaseApplication getAppContext() {
         return (BaseApplication) mContext;
     }
+
+
+
+    private void setupDatabase() {
+        //DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "shop.db", null);
+        MyOpenHelper helper = new MyOpenHelper(this, "shop.db", null);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        DaoMaster daoMaster = new DaoMaster(db);
+        daoSession = daoMaster.newSession();
+        QueryBuilder.LOG_SQL = true;
+        QueryBuilder.LOG_VALUES = true;
+        DaoLog.isLoggable(VERBOSE);
+    }
+
+    public static DaoSession getDaoInstance() {
+        return daoSession;
+    }
+
 
     public SharedPreferences getSharedPreferences() {
         return mPreferences;
@@ -300,11 +334,11 @@ public class BaseApplication extends Application {
         return true;
     }
 
-    public DBHelper getDBHelper() {
+    /*public DBHelper getDBHelper() {
         if (mDBHelper == null) {
             mDBHelper = new DBHelper(mContext);
         }
         return mDBHelper;
-    }
+    }*/
 
 }
