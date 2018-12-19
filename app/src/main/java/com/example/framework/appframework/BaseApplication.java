@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.NotificationCompat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,11 @@ import com.example.framework.appframework.model.LoginInfo;
 import com.example.framework.appframework.util.CrashHandler;
 import com.example.framework.appframework.util.LogUtil;
 import com.example.framework.appframework.util.Util;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.DiskLogAdapter;
+import com.orhanobut.logger.LogStrategy;
+import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.PrettyFormatStrategy;
 
 import org.greenrobot.greendao.DaoLog;
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -122,7 +128,15 @@ public class BaseApplication extends Application {
         //GreenDaoManager.getInstance();
 
         LogUtil.i(TAG, "init application ： OnCreate()");
+        PrettyFormatStrategy strategy = PrettyFormatStrategy.newBuilder()
+                .showThreadInfo(true)
+                .logStrategy(new LogCatStrategy())
+                .methodCount(1)
+                .tag("DCEAPP")
+                .build();
 
+        Logger.addLogAdapter(new AndroidLogAdapter(strategy));
+        Logger.addLogAdapter(new DiskLogAdapter());//保存到文件
 
         setupDatabase();
     }
@@ -134,8 +148,6 @@ public class BaseApplication extends Application {
     public static synchronized BaseApplication getAppContext() {
         return (BaseApplication) mContext;
     }
-
-
 
     private void setupDatabase() {
         //DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "shop.db", null);
@@ -341,4 +353,21 @@ public class BaseApplication extends Application {
         return mDBHelper;
     }*/
 
+    public class LogCatStrategy implements LogStrategy {
+
+        @Override public void log(int priority, String tag, String message) {
+            Log.println(priority, randomKey() + tag, message);
+        }
+
+        private int last;
+
+        private String randomKey() {
+            int random = (int) (10 * Math.random());
+            if (random == last) {
+                random = (random + 1) % 10;
+            }
+            last = random;
+            return String.valueOf(random);
+        }
+    }
 }
