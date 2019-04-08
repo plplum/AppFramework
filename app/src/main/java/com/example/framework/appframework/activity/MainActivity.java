@@ -1,5 +1,6 @@
 package com.example.framework.appframework.activity;
 
+import android.Manifest;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -22,10 +23,17 @@ import com.example.framework.appframework.util.AndroidBug54971Workaround;
 import com.example.framework.appframework.util.BottomNavigationViewHelper;
 import com.example.framework.appframework.util.Util;
 import com.example.framework.appframework.widget.CustomShapTextView;
+import com.orhanobut.logger.Logger;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import butterknife.BindView;
+import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
+
 
     @BindView(R.id.navigation)
     BottomNavigationView mNavigation;
@@ -80,7 +88,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+        requestPermissions();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -112,5 +120,34 @@ public class MainActivity extends BaseActivity {
         }
     };
 
+    /**
+     * 权限申请
+     */
+    private void requestPermissions() {
+        RxPermissions rxPermission = new RxPermissions(this);
+        rxPermission
+                .requestEach(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.SEND_SMS)
+                .subscribe(new Consumer<Permission>() {
+                    @Override
+                    public void accept(Permission permission) throws Exception {
+                        if (permission.granted) {
+                            // 用户已经同意该权限
+                            Logger.t(TAG).i(permission.name + " is granted.");
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
+                            Logger.t(TAG).i(permission.name + " is denied. More info should be provided.");
+                        } else {
+                            // 用户拒绝了该权限，并且选中『不再询问』
+                            Logger.t(TAG).i(permission.name + " is denied.");
+                        }
+                    }
+                });
 
+
+    }
 }
