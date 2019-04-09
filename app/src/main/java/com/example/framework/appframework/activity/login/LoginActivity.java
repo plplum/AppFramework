@@ -27,14 +27,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     @BindView(R.id.id_toolbar)
     Toolbar mToolbar;
-
     @BindView(R.id.et_username)
     EditText etUsername;
     @BindView(R.id.et_password)
     EditText etPassword;
 
     private ACache aCache;
-
 
     private LoginContract.Presenter mLoginPresenter;
 

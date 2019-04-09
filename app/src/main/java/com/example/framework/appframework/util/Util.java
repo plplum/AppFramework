@@ -317,7 +317,7 @@ public class Util {
 
     public static void hideWaitDialog() {
         if (dialog!=null)
-            dialog.hide();
+            dialog.dismiss();
     }
 }
 
