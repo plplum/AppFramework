@@ -5,9 +5,14 @@ import android.support.annotation.NonNull;
 
 import com.example.framework.appframework.biz.LoginBiz;
 import com.example.framework.appframework.contract.LoginContract;
+import com.example.framework.appframework.model.BaseEntity;
 import com.example.framework.appframework.model.LoginInfo;
 import com.example.framework.appframework.model.UserInfo;
+import com.example.framework.appframework.services.LoginService;
 import com.example.framework.appframework.util.BaseObserver1;
+import com.example.framework.appframework.util.HttpClient;
+
+import io.reactivex.Observable;
 
 /**
  * 公司：
@@ -129,7 +134,15 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void login1(UserInfo loginInfo) {
-        LoginBiz loginBiz = new LoginBiz();
+        Observable<BaseEntity<LoginInfo>> observable = HttpClient.creatService(LoginService.class).login(loginInfo);
+        HttpClient.executeMethod(observable,  new BaseObserver1<LoginInfo>(mActivity, true){
+            @Override
+            public void onSuccess(LoginInfo t) {
+                mLoginView.showUserInfo(t.getUserId());
+            }
+        });
+
+        /*LoginBiz loginBiz = new LoginBiz();
         loginBiz.loginPost(new BaseObserver1<LoginInfo>(mActivity, true){
 
             @Override
@@ -144,7 +157,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                 super.onFailure(code, message);
             }
         } ,loginInfo);
-
+*/
 
 
     }

@@ -1,11 +1,13 @@
 package com.example.framework.appframework.biz;
 
+import com.example.framework.appframework.model.BaseEntity;
 import com.example.framework.appframework.model.LoginInfo;
 import com.example.framework.appframework.model.UserInfo;
 import com.example.framework.appframework.services.LoginService;
 import com.example.framework.appframework.util.BaseObserver1;
 import com.example.framework.appframework.util.HttpClient;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -73,6 +75,10 @@ public class LoginBiz {
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
+
+
+
+
     }
 
 

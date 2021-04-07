@@ -1,10 +1,15 @@
 package com.example.framework.appframework.util;
 
+import com.example.framework.appframework.model.BaseEntity;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -56,9 +61,9 @@ public class HttpClient {
         //okHttpClient.addInterceptor(new CommonInterceptor());
 
         //设置超时
-        okHttpClient.connectTimeout(15, TimeUnit.SECONDS);
-        okHttpClient.readTimeout(20, TimeUnit.SECONDS);
-        okHttpClient.writeTimeout(20, TimeUnit.SECONDS);
+        okHttpClient.connectTimeout(10, TimeUnit.SECONDS);
+        okHttpClient.readTimeout(10, TimeUnit.SECONDS);
+        okHttpClient.writeTimeout(10, TimeUnit.SECONDS);
         //错误重连
         okHttpClient.retryOnConnectionFailure(true);
 
@@ -144,5 +149,11 @@ public class HttpClient {
         return mRetrofit.create(service);
     }
 
+    public static <T> void executeMethod(Observable<BaseEntity<T>> observable, BaseObserver1<T> observer) {
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .unsubscribeOn(Schedulers.io())
+                .subscribe(observer);
+    }
 
 }
