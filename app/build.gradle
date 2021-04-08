@@ -113,4 +113,7 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
 
     //implementation 'org.greenrobot:greendao-generator:3.2.2'
+
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.3@aar'
+
 }
